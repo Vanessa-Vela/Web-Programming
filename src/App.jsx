@@ -53,8 +53,10 @@ function App() {
   
   return (
     <>
-    <button onClick={() => setSum(true)}>Sum</button>
-    <button onClick={() => setCalculator(true)}>Calculator</button>
+    <div>
+      <button onClick={() => setSum(true)}>Sum</button>
+      <button onClick={() => setCalculator(true)}>Calculator</button>
+    </div>
 
     {sum && (
         <div>

@@ -1,23 +1,34 @@
-import {useState} from 'react';
+import { useState } from "react";
+import Sum from "./components/Sum";
+import Calculator from "./components/Calculator";
+import ApiWeb from "./components/ApiWeb";
+import './App.css'
 function App() {
-  const [page,setPage] = useState("inicio")
-  const [number1, setNumber1] = useState(0);
-  const [number2, setNumber2] = useState(0);
-
-  const handleClick = () => {
-    const total = Number(number1) + Number(number2);
-    alert(`El resultado de la suma es: ${total}`);
+  const [window, setWindow] = useState("home");
+  const goBack = () => {
+    setWindow("home");
   };
+
+  if (window === "sum") {
+    return (<Sum onBack={() => {goBack()}} />);
+  }
+
+  if (window === "calculator") {
+    return (<Calculator onBack={() => {goBack()}} />);
+  }
+
+  if (window === "ApiWeb") {
+    return (<ApiWeb onBack={() => {goBack()}} />);
+  }
 
   return (
     <div>
-      <label>Num 1 </label> 
-      <input type="number" value={number1} onChange={(e) => setNumber1(e.target.value)} />
+      <h1>HOME</h1>
+      <button type="button" onClick={() => setWindow("sum")}>Sumar</button>
       <br></br>
-      <label>Num 2 </label>
-      <input type="number" value={number2} onChange={(e) => setNumber2(e.target.value)} />
+      <button type="button" onClick={() => setWindow("calculator")}>Calculadora</button>
       <br></br>
-      <button type="button" onClick={handleClick}>Submit</button>
+      <button type="button" onClick={() => setWindow("ApiWeb")}>Api Web</button>
     </div>
   );
 }
